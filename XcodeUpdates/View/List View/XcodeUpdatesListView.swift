@@ -17,7 +17,16 @@ struct XcodeUpdatesListView: View {
             Spacer()
             ImageXcodeView(imageName: "")
 
-            InfoView(name: ide.name, releaseDate: "", version: ide.version.number!, build: ide.version.build!)
+            ide.version.release?.beta.map {
+                InfoView(name: ide.name + " Beta \($0)", releaseDate: "", version: ide.version.number, build: ide.version.build)
+            }
+            ide.version.release?.gm.map { _ in 
+                InfoView(name: ide.name + " GM", releaseDate: "", version: ide.version.number, build: ide.version.build)
+            }
+            ide.version.release?.gmSeed.map {
+                InfoView(name: ide.name + " GM Seed \($0)", releaseDate: "", version: ide.version.number, build: ide.version.build)
+            }
+            
             
             Spacer()
         }
@@ -37,8 +46,8 @@ struct InfoView: View {
     
     let name: String
     let releaseDate: String
-    let version: String
-    let build: String
+    let version: String?
+    let build: String?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -47,9 +56,13 @@ struct InfoView: View {
             Text(releaseDate)
                 .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)
             HStack {
-                Text(version)
+                version.map {
+                    Text($0)
+                }
                 Spacer()
-                Text(build)
+                build.map {
+                    Text($0)
+                }
             }
         }
     }
