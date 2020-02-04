@@ -17,22 +17,20 @@ struct MainContentView: View {
     }
     
     var body: some View {
-        
         NavigationView {
-            
             List(viewModel.ides, id: \.id) { ide in
-                XcodeUpdatesListView(ide: ide)
-            }
-            .navigationBarTitle("Xcode Updates")
+                NavigationLink(destination: IDEView(viewModel: IDEViewModel(ide: ide)), label: {
+                    XcodeUpdateRow(ide: ide)
+                })
+            }.navigationBarTitle("Xcode Updates")
         }
-        
     }
 }
 
 #if DEBUG
 struct MainContentView_Previews: PreviewProvider {
     static var previews: some View {
-        MainContentView(viewModel: XcodeUpdatesViewModel(xcodeUpdatesFetcher: XcodeUpdatesFetcher(session: URLSession(configuration: URLSessionConfiguration.background(withIdentifier: "com.example.DownloadTaskExample.background"), delegate: nil, delegateQueue: OperationQueue()))))
+        MainContentView(viewModel: XcodeUpdatesViewModel(xcodeUpdatesFetcher: XcodeUpdatesFetcher()))
     }
 }
 #endif

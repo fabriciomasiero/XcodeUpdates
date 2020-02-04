@@ -13,7 +13,7 @@ public struct IDE: Codable, Identifiable {
     public var id = UUID()
     public let compilers: Compilers?
     public let requires: String
-    public let date: Date
+    public let date: ReleaseDate
     public let links: Links?
     public let version: Version
     public let sdks: SDKs?
@@ -27,5 +27,36 @@ public struct IDE: Codable, Identifiable {
         case version
         case sdks
         case name
+    }
+}
+
+extension IDE {
+    public func fullName() -> String {
+        if let beta = version.release?.beta {
+            return name + " Beta \(String(describing: beta))"
+        }
+        if let _ = version.release?.gm {
+            return name + " GM"
+        }
+        if let gmSeed = version.release?.gmSeed {
+            return name + " GM Seed \(String(describing: gmSeed))"
+        }
+        return name + " " + (version.number ?? "")
+    }
+    func image() -> String {
+        if version.release?.beta != nil {
+            return "xcode-beta"
+        }
+        return "xcode"
+    }
+    func releaseDate() -> String {
+        let dateComponents = DateComponents(year: date.year, month: date.month, day: date.day)
+        let calendar = Calendar.current
+        if let date = calendar.date(from: dateComponents) {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE, MMM d, yyyy"
+            return dateFormatter.string(from: date)
+        }
+        return ""
     }
 }

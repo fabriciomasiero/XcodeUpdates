@@ -12,6 +12,7 @@ import Combine
 class XcodeUpdatesViewModel: ObservableObject, Identifiable {
     
     private let xcodeUpdatesFetcher: XcodeUpdatesFetcher
+    
     private var disposables = Set<AnyCancellable>()
     
     @Published var ides: [IDE] = []
@@ -22,17 +23,17 @@ class XcodeUpdatesViewModel: ObservableObject, Identifiable {
     }
     func getXcodeUpdates() {
         xcodeUpdatesFetcher.getUpdates().map { response in
-            self.ides = response
+            DispatchQueue.main.async {
+                self.ides = response
+            }
         }.receive(on: DispatchQueue.main)
-            .sink(receiveCompletion: { correctOne in
-                switch correctOne {
+            .sink(receiveCompletion: { completion in
+                switch completion {
                 case .failure(let error):
                     print(error)
                 case .finished:
-                    print("what")
+                    print("completed")
                 }
-        }) { andHere in
-            print("andHere")
-        }.store(in: &disposables)
+        }) {()}.store(in: &disposables)
     }
 }

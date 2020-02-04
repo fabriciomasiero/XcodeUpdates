@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Date: Codable {
+public struct ReleaseDate: Codable {
     public let year: Int
     public let month: Int
     public let day: Int
