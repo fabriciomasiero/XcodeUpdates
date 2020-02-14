@@ -18,7 +18,7 @@ struct XcodeUpdateRow: View {
             Spacer()
             ImageXcodeView(imageName: ide.image())
             Divider()
-            InfoView(name: ide.fullName(), releaseDate: ide.releaseDate(), version: ide.version.number, build: ide.version.build)
+            InfoView(name: ide.standardName(), releaseDate: ide.releaseDate(), version: ide.version.number, build: ide.version.build)
             Spacer()
         }
     }

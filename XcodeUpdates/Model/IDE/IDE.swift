@@ -31,7 +31,7 @@ public struct IDE: Codable, Identifiable {
 }
 
 extension IDE {
-    public func fullName() -> String {
+    public func standardName() -> String {
         if let beta = version.release?.beta {
             return name + " Beta \(String(describing: beta))"
         }
@@ -42,6 +42,19 @@ extension IDE {
             return name + " GM Seed \(String(describing: gmSeed))"
         }
         return name + " " + (version.number ?? "")
+    }
+    public func fullName() -> String {
+        let nameVersion = name + " " + (version.number ?? "") + " "
+        if let beta = version.release?.beta {
+            return nameVersion + " Beta \(String(describing: beta))"
+        }
+        if let _ = version.release?.gm {
+            return nameVersion + " GM"
+        }
+        if let gmSeed = version.release?.gmSeed {
+            return nameVersion + " GM Seed \(String(describing: gmSeed))"
+        }
+        return nameVersion
     }
     func image() -> String {
         if version.release?.beta != nil {

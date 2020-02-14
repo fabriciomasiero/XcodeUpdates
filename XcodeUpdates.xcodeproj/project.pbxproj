@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DE175CD523F71494003854EB /* WebViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE175CD423F71494003854EB /* WebViewViewModel.swift */; };
 		DE23D54E23E8AF890097A498 /* XcodeUpdateRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE23D54D23E8AF890097A498 /* XcodeUpdateRow.swift */; };
 		DE23D55223E9B9C90097A498 /* IDEView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE23D55123E9B9C90097A498 /* IDEView.swift */; };
 		DE3ABB1123E9CE5900628174 /* IDEViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3ABB1023E9CE5900628174 /* IDEViewModel.swift */; };
@@ -31,6 +32,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DE175CC323F46B64003854EB /* XcodeUpdates.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XcodeUpdates.entitlements; sourceTree = "<group>"; };
+		DE175CD423F71494003854EB /* WebViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewViewModel.swift; sourceTree = "<group>"; };
 		DE23D54D23E8AF890097A498 /* XcodeUpdateRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XcodeUpdateRow.swift; sourceTree = "<group>"; };
 		DE23D55123E9B9C90097A498 /* IDEView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDEView.swift; sourceTree = "<group>"; };
 		DE3ABB1023E9CE5900628174 /* IDEViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDEViewModel.swift; sourceTree = "<group>"; };
@@ -67,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DE175CD323F71482003854EB /* WebViewViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				DE175CD423F71494003854EB /* WebViewViewModel.swift */,
+			);
+			path = WebViewViewModel;
+			sourceTree = "<group>";
+		};
 		DE23D54F23E9B7D70097A498 /* IDEList */ = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +218,7 @@
 		DE8F5768237EFF0200C11D98 /* XcodeUpdates */ = {
 			isa = PBXGroup;
 			children = (
+				DE175CC323F46B64003854EB /* XcodeUpdates.entitlements */,
 				DEAA7A892388760A009B5124 /* ViewModel */,
 				DE7F62B32384632100008DFF /* Model */,
 				DE8F577F237F193300C11D98 /* View */,
@@ -258,6 +270,7 @@
 		DEAA7A892388760A009B5124 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				DE175CD323F71482003854EB /* WebViewViewModel */,
 				DE3ABB0F23E9CDBD00628174 /* IDEViewModel */,
 				DEAA7A8A23887620009B5124 /* XcodeUpdatesViewModel */,
 			);
@@ -344,6 +357,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE8F577E237F0D5300C11D98 /* AppDelegate.swift in Sources */,
+				DE175CD523F71494003854EB /* WebViewViewModel.swift in Sources */,
 				DE7F62BF2384648000008DFF /* Release.swift in Sources */,
 				DE7F62AA2383796A00008DFF /* Parsing.swift in Sources */,
 				DE7F62B52384632F00008DFF /* IDE.swift in Sources */,
@@ -496,17 +510,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = XcodeUpdates/XcodeUpdates.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"XcodeUpdates/Preview Content\"";
 				DEVELOPMENT_TEAM = J2EB484G7Z;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = XcodeUpdates/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fabriciomasiero.XcodeUpdates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -516,17 +534,21 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = XcodeUpdates/XcodeUpdates.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				DERIVE_MACCATALYST_PRODUCT_BUNDLE_IDENTIFIER = YES;
 				DEVELOPMENT_ASSET_PATHS = "\"XcodeUpdates/Preview Content\"";
 				DEVELOPMENT_TEAM = J2EB484G7Z;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = XcodeUpdates/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = fabriciomasiero.XcodeUpdates;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
