@@ -18,8 +18,9 @@ struct IDEView: View {
             IDEHeaderView(ide: viewModel.ide).background(Color.init(red: 240/255, green: 240/255, blue: 240/255))
             WebView(viewModel: WebViewViewModel(releaseNotesUrl: viewModel.ide.links?.notes?.url))
         }.navigationBarTitle("Release Notes").navigationBarItems(trailing: Button(action: {
-            guard let stringUrl = self.viewModel.ide.links?.download?.url, let url = URL(string: stringUrl) else { return }
-            UIApplication.shared.open(url)
+            guard let stringUrl = self.viewModel.ide.links?.download?.url, let url = URL(string: stringUrl), let relativeUrl = URL(string: "https://developer.apple.com/services-account/download?path=" + url.relativePath) else { return }
+            
+            UIApplication.shared.open(relativeUrl)
         }, label: { Image("square.and.arrow.down")}))
     }
 }
@@ -31,22 +32,25 @@ struct IDEHeaderView: View {
             Text(ide.fullName())
                 .font(.system(size: 15.0))
                 .fontWeight(.bold)
+                .foregroundColor(.black)
             HStack {
                 Spacer()
                 Text("Build Number: " + (ide.version.build ?? ""))
                     .font(.system(size: 13.0))
                     .fontWeight(.light)
+                    .foregroundColor(.black)
                 Spacer()
                 Text("Released on " + ide.releaseDate())
                     .font(.system(size: 13.0))
                     .fontWeight(.light)
+                    .foregroundColor(.black)
                 Spacer()
             }
             HStack {
                 Text("Requires macOS " + ide.requires)
                     .font(.system(size: 13.0))
                     .fontWeight(.light)
-
+                    .foregroundColor(.black)
             }
         }
         
