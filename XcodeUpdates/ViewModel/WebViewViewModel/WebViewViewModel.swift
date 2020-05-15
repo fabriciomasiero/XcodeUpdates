@@ -14,6 +14,7 @@ public class WebViewViewModel: NSObject {
     let releaseNotesUrl: String?
     
     let webView: WKWebView
+    let activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView(style: .large)
     
     init(releaseNotesUrl: String?) {
         self.releaseNotesUrl = releaseNotesUrl
@@ -30,12 +31,15 @@ public class WebViewViewModel: NSObject {
             webView.navigationDelegate = self
         }
     }
+    public func startAnimating() {
+        activityIndicator.startAnimating()
+    }
 }
 extension WebViewViewModel: WKNavigationDelegate {
     public func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
-        
+        activityIndicator.startAnimating()
     }
     public func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
-        
+        activityIndicator.stopAnimating()
     }
 }

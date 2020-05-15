@@ -17,6 +17,7 @@ struct IDEView: View {
         VStack(alignment: .trailing, spacing: 0) {
             IDEHeaderView(ide: viewModel.ide).background(Color.init(red: 240/255, green: 240/255, blue: 240/255))
             WebView(viewModel: WebViewViewModel(releaseNotesUrl: viewModel.ide.links?.notes?.url))
+            ActivityIndicator(viewModel: WebViewViewModel(releaseNotesUrl: viewModel.ide.links?.notes?.url))
         }.navigationBarTitle("Release Notes").navigationBarItems(trailing: Button(action: {
             guard let stringUrl = self.viewModel.ide.links?.download?.url, let url = URL(string: stringUrl), let relativeUrl = URL(string: "https://developer.apple.com/services-account/download?path=" + url.relativePath) else { return }
             
@@ -53,13 +54,13 @@ struct IDEHeaderView: View {
                     .foregroundColor(.black)
             }
         }
-        
     }
 }
 
 struct WebView: UIViewRepresentable {
     
     let viewModel: WebViewViewModel
+    //    let activityIndicator: ActivityIndicator
     
     func makeUIView(context: Context) -> WKWebView {
         return viewModel.webView
@@ -71,14 +72,14 @@ struct WebView: UIViewRepresentable {
 
 struct ActivityIndicator: UIViewRepresentable {
     
-    @Binding var isAnimating: Bool
+    let viewModel: WebViewViewModel
     
     func makeUIView(context: Context) -> UIActivityIndicatorView {
-        return UIActivityIndicatorView(style: .large)
+        return viewModel.activityIndicator
     }
     
     func updateUIView(_ uiView: UIActivityIndicatorView, context: Context) {
-        isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
+        viewModel.startAnimating()
     }
     
 }
